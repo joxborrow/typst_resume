@@ -1,3 +1,8 @@
+// Custom parameters
+#let header_color = "BCC79E"
+#let paragraph_font = "Proza Libre"
+#let title_font = "Calibri"
+
 // Set page defaults
 #set page(
     paper: "us-letter",
@@ -9,7 +14,7 @@
 
 // Set Text Defaults
 #set text(
-  font: "Proza Libre",
+  font: paragraph_font,
   size: 10pt,
 )
 
@@ -23,12 +28,11 @@
 
     )
 
-// Custom parameters
-#let header_color = "BCC79E"
 
 // Custom Functions
 #let section_heading(string) = block(text(string, 
-                                          fill: white, 
+                                          fill: white,
+                                          weight: "semibold", 
                                           size: 1.2em), 
                                      fill: rgb(black),
                                      radius: 2mm,
@@ -37,7 +41,8 @@
                                      )
 
 #let top_section_heading(string) = block(text(string, 
-                                              fill: white, 
+                                              fill: white,
+                                              weight: "semibold", 
                                               size: 1.2em), 
                                          fill: rgb(black),
                                          radius: (bottom-right: 2mm),
@@ -85,7 +90,7 @@
        below: 0em)[
     #align(center)[
     #text(size: 2em,
-          font: "EB Garamond",
+          font: title_font,
           weight: "semibold")[Jonathan T. Oxborrow] #linebreak()
     Economics, S&OP and Pricing Analytics Professional #linebreak()
     Washington, IL 61571 || USA
