@@ -1,7 +1,8 @@
 // Custom parameters
-#let header_color = "BCC79E"
-#let paragraph_font = "Proza Libre"
-#let title_font = "Calibri"
+#let header_color = rgb("BCC79E")
+#let paragraph_font = "Lato"
+#let paragraph_font_size = 9pt
+#let title_font = "Lato"
 
 // Set page defaults
 #set page(
@@ -15,7 +16,7 @@
 // Set Text Defaults
 #set text(
   font: paragraph_font,
-  size: 10pt,
+  size: paragraph_font_size,
 )
 
 // Set Block defaults
@@ -45,7 +46,8 @@
                                               weight: "semibold", 
                                               size: 1.2em), 
                                          fill: rgb(black),
-                                         radius: (bottom-right: 2mm),
+                                         radius: (bottom-right: 2mm,
+                                                  bottom-left: 2mm),
                                          above: 0em,
                                          below: 0em
                                          )
@@ -82,11 +84,12 @@
                                 ]
                                )
                           }
+
 //******************************************************************************
 // Content
 // *****************************************************************************
 
-#block(fill: rgb(header_color),
+#block(fill: header_color,
        below: 0em)[
     #align(center)[
     #text(size: 2em,
@@ -182,7 +185,28 @@
 
 #section_heading("Certifications")
 
-#lorem(60)
+
+#grid(columns: (10%, 19%, 9%, 20%, 9%, 22%),
+//      stroke: rgb(blue),
+      gutter: 1%,
+      grid.cell(image("graphics/Data Strategy Certification.png", width: 100%), align: horizon), 
+      grid.cell([#text("Data Strategy", weight: "bold") #linebreak()
+       #text("UC Berkeley, 4/2024") #linebreak()
+       #text("Data as a Strategic Advantage")], align: horizon),
+       grid.cell([#text("In") #linebreak()
+        #text("Progress...")], align: horizon + center, fill: rgb("#cac8c8")),
+       grid.cell([#text("Machine Learning & AI", weight: "bold") #linebreak()
+        #text("UC Berkeley, Expected 3/2025") #linebreak()
+        #text("Strong Foundation in ML/AI")], align: horizon),
+       grid.cell(image("graphics/certified_cloud_practitioner.png", width: 100%), align: horizon),
+       grid.cell([#text("AWS Certified Cloud Practitioner", weight: "bold") #linebreak()
+        #text("AWS, 8/2023-8/2026") #linebreak()
+        #text("Foundational Understanding of") #linebreak()
+        #text("Cloud Services")], align: horizon))
+
+
+
+//#lorem(60)
 
 #section_heading("Leadership Qualities & Training")
 
