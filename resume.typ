@@ -1,13 +1,37 @@
+// Imports
+#import "@preview/cades:0.3.0": qr-code
+
 // Custom parameters
 #let header_color = rgb("BCC79E")
 #let paragraph_font = "Lato"
-#let paragraph_font_size = 9pt
+#let paragraph_font_size = 10pt
 #let title_font = "Lato"
 
 // Set page defaults
 #set page(
     paper: "us-letter",
-    margin: (left: 0mm, right: 0mm, top: 0mm, bottom: 5mm)
+    margin: (left: 0mm, right: 0mm, top: 18mm, bottom: 5mm),
+    header-ascent: 0pt,
+    header: place(top + center)[
+                  #block(fill: header_color)[
+                    #align(center)[
+                        #text(size: 2em, 
+                        font: title_font,
+                        weight: "semibold")[Jonathan T. Oxborrow] #linebreak()
+                        Economics, S&OP and Pricing Analytics Professional #linebreak()
+                        Washington, IL 61571 || USA
+                    ]
+                  ]
+            ],
+    footer-descent: 0pt,
+    footer: place(bottom + center)[
+        #block(fill: rgb(black),
+               radius: (top-right: 2mm,
+                        top-left: 2mm),
+               above: .5em,
+               below: .5em
+              )
+    ]  
 )
 
 // Set paragraph defaults
@@ -26,9 +50,7 @@
        inset: .5em,
        above: .5em,
        below: .5em
-
     )
-
 
 // Custom Functions
 #let section_heading(string) = block(text(string, 
@@ -89,16 +111,18 @@
 // Content
 // *****************************************************************************
 
-#block(fill: header_color,
-       below: 0em)[
-    #align(center)[
-    #text(size: 2em,
-          font: title_font,
-          weight: "semibold")[Jonathan T. Oxborrow] #linebreak()
-    Economics, S&OP and Pricing Analytics Professional #linebreak()
-    Washington, IL 61571 || USA
-    ]
-]
+//#block(fill: header_color,
+//       below: 0em)[
+//    #align(center)[
+//    #text(size: 2em,
+//          font: title_font,
+//          weight: "semibold")[Jonathan T. Oxborrow] #linebreak()
+//    Economics, S&OP and Pricing Analytics Professional #linebreak()
+//    Washington, IL 61571 || USA
+//    ]
+//]
+
+
 
 #top_section_heading("Experience")
 
@@ -185,8 +209,7 @@
 
 #section_heading("Certifications")
 
-
-#grid(columns: (10%, 19%, 9%, 20%, 9%, 22%),
+#grid(columns: (8%, 22%, 8%, 23%, 8%, 25%),
 //      stroke: rgb(blue),
       gutter: 1%,
       grid.cell(image("graphics/Data Strategy Certification.png", width: 100%), align: horizon), 
@@ -204,7 +227,14 @@
         #text("Foundational Understanding of") #linebreak()
         #text("Cloud Services")], align: horizon))
 
-
+#grid(columns: (5%, 44%, 44%, 5%),
+      gutter: 1%,
+      [],
+      grid.cell([#text("Professional Forecaster", weight: "bold") #linebreak()
+       #text("Institute for Business Forecasting, 8/2010-6/2014")], align: horizon + center),
+      grid.cell([#text("Economic Measurement", weight: "bold") #linebreak()
+       #text("National Association for Business Economics, 10/2011")], align: horizon + center),
+       [])
 
 //#lorem(60)
 
