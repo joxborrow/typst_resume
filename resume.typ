@@ -3,6 +3,7 @@
 
 // Custom parameters
 #let header_color = rgb("BCC79E")
+#let footer_color = rgb("#000000")
 #let paragraph_font = "Lato"
 #let paragraph_font_size = 10pt
 #let title_font = "Lato"
@@ -10,7 +11,7 @@
 // Set page defaults
 #set page(
     paper: "us-letter",
-    margin: (left: 0mm, right: 0mm, top: 18mm, bottom: 5mm),
+    margin: (left: 0mm, right: 0mm, top: 18mm, bottom: 8mm),
     header-ascent: 0pt,
     header: place(top + center)[
                   #block(fill: header_color)[
@@ -25,12 +26,14 @@
             ],
     footer-descent: 0pt,
     footer: place(bottom + center)[
-        #block(fill: rgb(black),
+        #block(fill: footer_color,
                radius: (top-right: 2mm,
                         top-left: 2mm),
-               above: .5em,
-               below: .5em
-              )
+               above: .0em,
+               below: .0em
+              )[#text(fill: white,
+                            weight: "semibold", 
+                            size: 1.2em)[Testing]]
     ]  
 )
 
@@ -110,18 +113,6 @@
 //******************************************************************************
 // Content
 // *****************************************************************************
-
-//#block(fill: header_color,
-//       below: 0em)[
-//    #align(center)[
-//    #text(size: 2em,
-//          font: title_font,
-//          weight: "semibold")[Jonathan T. Oxborrow] #linebreak()
-//    Economics, S&OP and Pricing Analytics Professional #linebreak()
-//    Washington, IL 61571 || USA
-//    ]
-//]
-
 
 
 #top_section_heading("Experience")
@@ -207,7 +198,13 @@
            Earned a B.A. in Economics. Coursework included spanish, computer programming, calculus, differential equations, linear algebra, price theory,  finanical, trade, urban, and  health economics.
            ]
 
-#section_heading("Certifications")
+#pagebreak()
+
+#set page(
+    paper: "us-letter",
+    margin: (left: 0mm, right: 0mm, top: 0mm, bottom: 0mm))
+
+#top_section_heading("Certifications")
 
 #grid(columns: (8%, 22%, 8%, 23%, 8%, 25%),
 //      stroke: rgb(blue),
