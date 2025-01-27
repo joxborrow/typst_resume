@@ -1,5 +1,6 @@
 // Imports
 #import "@preview/cades:0.3.0": qr-code
+#import "@preview/fontawesome:0.5.0": *
 
 // Custom parameters
 #let header_color = rgb("BCC79E")
@@ -11,7 +12,7 @@
 // Set page defaults
 #set page(
     paper: "us-letter",
-    margin: (left: 0mm, right: 0mm, top: 18mm, bottom: 8mm),
+    margin: (left: 0mm, right: 0mm, top: 23mm, bottom: 8mm),
     header-ascent: 0pt,
     header: place(top + center)[
                   #block(fill: header_color)[
@@ -20,7 +21,8 @@
                         font: title_font,
                         weight: "semibold")[Jonathan T. Oxborrow] #linebreak()
                         Economics, S&OP and Pricing Analytics Professional #linebreak()
-                        Washington, IL 61571 || USA
+                        Washington, IL 61571 || USA #linebreak()
+                        #text(font: "FontAwesome", size: 10pt)[#link("https://www.linkedin.com/in/joxborrow1")[] LinkedIn  | #link("www.github.com/joxborrow")[Github] | Website]
                     ]
                   ]
             ],
@@ -31,10 +33,11 @@
                         top-left: 2mm),
                above: .0em,
                below: .0em
-              )[#text(fill: white,
-                            weight: "semibold", 
-                            size: 1.2em)[Testing]]
-    ]  
+              )[Test]
+    ],
+    foreground: box(stroke: 2pt + black,
+                    height: 100%, width: 100%,
+                    fill: none)
 )
 
 // Set paragraph defaults
@@ -109,6 +112,35 @@
                                 ]
                                )
                           }
+
+#let ats_entry(line1, 
+               content) = {grid(columns: (.8fr,2fr),
+                                gutter: 8pt,
+                                inset: .0em,
+                                align(left + top)[
+                                    #v(.5em)
+                                    #text(line1, weight: "bold")
+                                ],
+                                align(left + top)[
+                                    #content
+                                ]
+                               )
+                          }
+
+#let badge(content, fill: header_color, stroke: none, text-color: black) = box(
+  radius: 2pt,
+  inset: 4pt,
+  fill: fill,
+  stroke: stroke,
+  width: auto,
+  height: auto,
+
+  if type(content) == str {
+    text(fill: text-color, content)
+  } else {
+    content
+  }
+)
 
 //******************************************************************************
 // Content
@@ -198,11 +230,8 @@
            Earned a B.A. in Economics. Coursework included spanish, computer programming, calculus, differential equations, linear algebra, price theory,  finanical, trade, urban, and  health economics.
            ]
 
-#pagebreak()
-
-#set page(
-    paper: "us-letter",
-    margin: (left: 0mm, right: 0mm, top: 0mm, bottom: 0mm))
+#set page(header: none,
+          margin: (top: 0mm))
 
 #top_section_heading("Certifications")
 
@@ -233,15 +262,55 @@
        #text("National Association for Business Economics, 10/2011")], align: horizon + center),
        [])
 
-//#lorem(60)
-
 #section_heading("Leadership Qualities & Training")
+#grid(columns: (.25fr, 1fr, 1fr, .25fr),[],
+[
+    - Communication & Emotional Intelligence
+    - Ownership - Drives projects to completion
+    - Values & Integrity],
+[
+    - Enterprise Behavior & Teamwork
+    - Goal/Result Oriented
+    - Intellecutally Curious & Continous Learner
 
-#lorem(60)
+],[])
 
 #section_heading("Analytic & Technical Skills")
+#ats_entry("Analytics & Programming")[
+    #grid(
+        rows: (auto, auto, auto),
+        columns: (auto, auto),
+        row-gutter: .25em,
+        column-gutter: .25em, 
+        [Proficient:],
+        [#par(leading: .25em, justify: false)[#badge("Python") #badge("PySpark") #badge("SQL/Snowflake") #badge("R")
+        #badge("Quarto") #badge("AWS/EMR") #badge("Excel/VBA") #badge("Power Automate")
+        #badge("Tableau") #badge("DevOps") #badge("Git/Github/Codespaces") #badge("Mermaid") 
+        #badge("Graphviz/Dot")]],
+        [Experienced:],
+        [#par(leading: .25em, justify: false)[#badge("PowerBI") #badge("Alteryx") #badge("Cognos") #badge("SAP Bobj")
+        #badge("SAS") #badge("STATA") #badge("Eviews") #badge("bash") #badge("Typst")]],
+        [Functional:],
+        [#par(leading: .25em, justify: false)[#badge("Julia") #badge("C/C#"), #badge("Javascript") #badge("Docker")]])
+]
 
-#lorem(60)
+#line(length: 1000%, stroke: .25pt, start: (0%, 0%))
+
+#ats_entry("Statistics, ML, and AI")[
+    #grid(
+        rows: (auto, auto, auto),
+        columns: (auto, auto),
+        row-gutter: 4pt,
+        column-gutter: 4pt, 
+        [Proficient:], 
+        [#par(leading: .25em, justify: false)[#badge("Time Series & Forecasting") #badge("Seasonal Adjustment") #badge("Regression/GLM") #badge("Classification")]],
+        [Experienced:],
+        [#par(leading: .25em, justify: false)[#badge("KNN/DBSCAN") #badge("Lasso/Ridge") #badge("Logistic Regression") 
+         #badge("Kernel Methods") #badge("Feature Engineering/Selection") #badge("Decision Trees/Random Forest")
+         #badge("Outlier Detection") #badge("Imputation") #badge("NLP/Naive Bayes") #badge("SVD") 
+         #badge("Gradient Descent")]],
+        [Functional:],[#par(leading: .25em, justify: false)[#badge("Graph & Network Analysis")]])]
+
 
 #section_heading("Languages, Projects, and Activities")
 
